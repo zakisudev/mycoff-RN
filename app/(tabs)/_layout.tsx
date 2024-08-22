@@ -13,23 +13,43 @@ export default function TabLayout() {
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
         headerShown: false,
-      }}>
+      }}
+    >
       <Tabs.Screen
-        name="index"
+        name="home"
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
+          tabBarIcon: ({ focused }) => (
+            <TabBarIcon icon="Home" active={focused ? true : false} />
           ),
+          tabBarLabel: '',
+          freezeOnBlur: false,
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="favorite"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
+          tabBarIcon: ({ focused }) => (
+            <TabBarIcon icon="Heart" active={focused ? true : false} />
           ),
+          tabBarLabel: '',
+        }}
+      />
+      <Tabs.Screen
+        name="bag"
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <TabBarIcon icon="Bag" active={focused ? true : false} />
+          ),
+          tabBarLabel: '',
+        }}
+      />
+      <Tabs.Screen
+        name="notification"
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <TabBarIcon icon="Notification" active={focused ? true : false} />
+          ),
+          tabBarLabel: '',
         }}
       />
     </Tabs>
