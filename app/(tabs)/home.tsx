@@ -1,6 +1,5 @@
 import {
   View,
-  Text,
   SafeAreaView,
   TouchableOpacity,
   Image,
@@ -15,34 +14,33 @@ import {
 import { LinearGradient } from 'expo-linear-gradient';
 import LocationDropdown from '@/components/LocationSelect';
 import SearchProduct from '@/components/SearchProduct';
+import Featured from '@/components/Featured';
+import CoffeeTypes from '@/components/CoffeeTypes';
+import ProductItems from '@/components/ProductItems';
 
 const home = () => {
+  const [selectedCoffee, setSelectedCoffee] = useState('Cappuccino');
   const [searchTerm, setSearchTerm] = useState('');
 
   return (
-    <GestureHandlerRootView>
+    <GestureHandlerRootView style={{ flex: 1 }}>
       <NativeViewGestureHandler>
         <SafeAreaView
           style={{
             backgroundColor: '#f2f2f2',
             width: '100%',
-            flex: 1,
             height: '100%',
+            flex: 1,
           }}
         >
-          <KeyboardAvoidingView
-            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-            style={{ flex: 1 }}
-          >
+          <View style={{ flex: 1 }}>
             <LinearGradient
               colors={['#131313', '#313131']}
               style={{
-                position: 'absolute',
-                top: 0,
-                height: '35%',
-                marginVertical: 'auto',
+                height: '100%',
                 width: '100%',
                 alignItems: 'center',
+                flex: 1.3,
               }}
               start={{ x: 1, y: 0 }}
               end={{ x: 0, y: 1 }}
@@ -53,7 +51,7 @@ const home = () => {
                   height: '100%',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  padding: 20,
+                  padding: 25,
                 }}
               >
                 <View
@@ -87,10 +85,61 @@ const home = () => {
                   </TouchableOpacity>
                 </View>
 
-                <SearchProduct />
+                <SearchProduct setSearchTerm={setSearchTerm} />
               </View>
             </LinearGradient>
-          </KeyboardAvoidingView>
+
+            {/* Products */}
+            <View
+              style={{
+                flexDirection: 'column',
+                width: '100%',
+                height: '100%',
+                justifyContent: 'center',
+                alignItems: 'center',
+                flex: 2,
+                position: 'relative',
+                paddingTop: 120,
+              }}
+            >
+              <View
+                style={{
+                  width: '100%',
+                  position: 'absolute',
+                  top: -40,
+                  left: 22,
+                  zIndex: 10,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
+                <Featured promo={true} />
+              </View>
+              <View
+                style={{
+                  width: '100%',
+                  marginHorizontal: 'auto',
+                  flex: 1,
+                }}
+              >
+                <View style={{ alignItems: 'center', flex: 0.12 }}>
+                  <CoffeeTypes
+                    selectedCoffee={selectedCoffee}
+                    setSelectedCoffee={setSelectedCoffee}
+                  />
+                </View>
+                <View
+                  style={{
+                    width: '100%',
+                    alignItems: 'center',
+                    flex: 1,
+                  }}
+                >
+                  <ProductItems selectedCoffee={selectedCoffee} />
+                </View>
+              </View>
+            </View>
+          </View>
         </SafeAreaView>
       </NativeViewGestureHandler>
     </GestureHandlerRootView>
