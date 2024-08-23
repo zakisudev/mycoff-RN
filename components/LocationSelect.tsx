@@ -19,7 +19,14 @@ const LocationDropdown = () => {
 
   return (
     <View style={[styles.container, { width: 100, justifyContent: 'center' }]}>
-      <Text style={styles.label}>Location</Text>
+      <View style={{ flexDirection: 'row', gap: 10, alignItems: 'center' }}>
+        <Text style={styles.label}>Location</Text>
+        <Image
+          source={require('../assets/icons/Location.png')}
+          style={{ width: 16, height: 16 }}
+          resizeMode="contain"
+        />
+      </View>
       <RNPickerSelect
         placeholder={placeholder}
         onValueChange={(value) => setSelectedCity(value)}
@@ -31,12 +38,13 @@ const LocationDropdown = () => {
             <Image
               source={require('../assets/images/ArrowDown.png')}
               style={{
-                width: 14,
+                width: 16,
                 height: 14,
                 justifyContent: 'center',
                 alignItems: 'center',
                 top: 15,
               }}
+              resizeMode="cover"
             />
           );
         }}
@@ -50,10 +58,10 @@ const styles = StyleSheet.create({
     marginVertical: 20,
   },
   label: {
-    color: '#FFFFFF',
+    color: '#cbcbcb',
+    fontFamily: 'SpaceMono',
     fontSize: 18,
     fontWeight: '300',
-    marginBottom: 5,
   },
 });
 
@@ -63,19 +71,20 @@ const pickerSelectStyles = StyleSheet.create({
     left: 0,
     fontSize: 24,
     fontWeight: '600',
-    paddingVertical: 5,
+    fontFamily: 'SpaceMono',
     color: '#FFFFFF',
     overflow: 'hidden',
     backgroundColor: 'transparent',
     alignItems: 'flex-start',
     justifyContent: 'center',
+    marginRight: 5,
   },
   inputAndroid: {
     width: '100%',
     left: 0,
     fontSize: 24,
     fontWeight: '600',
-    paddingVertical: 5,
+    fontFamily: 'SpaceMono',
     color: '#FFFFFF',
     overflow: 'hidden',
     backgroundColor: 'transparent',

@@ -37,6 +37,7 @@ const SearchProduct = () => {
             width: '100%',
             alignItems: 'center',
             justifyContent: 'center',
+            fontFamily: 'SpaceMono',
             fontSize: 20,
             color: '#f2f2f2',
           }}
