@@ -1,7 +1,11 @@
 import { View, Image, TextInput, TouchableOpacity } from 'react-native';
 import React from 'react';
 
-const SearchProduct = () => {
+type SearchProductProps = {
+  setSearchTerm: (term: string) => void;
+};
+
+const SearchProduct: React.FC<SearchProductProps> = ({ setSearchTerm }) => {
   return (
     <View style={{ width: '100%', height: 52, borderRadius: 10 }}>
       <View
