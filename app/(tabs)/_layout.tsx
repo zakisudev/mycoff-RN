@@ -23,6 +23,12 @@ export default function TabLayout() {
           ),
           tabBarLabel: '',
           freezeOnBlur: false,
+          tabBarStyle: {
+            height: 80,
+            paddingTop: 10,
+            borderTopColor: '#dcdcdc',
+            borderTopWidth: 2,
+          },
         }}
       />
       <Tabs.Screen
