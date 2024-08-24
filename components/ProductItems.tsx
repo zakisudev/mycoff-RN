@@ -1,19 +1,19 @@
 import { View, FlatList } from 'react-native';
 import React from 'react';
-import CoffeeCard, { item } from './CoffeeCard';
+import CoffeeCard from './CoffeeCard';
 
 type ProductItemsProps = {
   selectedCoffee: string;
 };
 
-const items: item[] = [
+const items: any[] = [
   {
     id: 1,
     title: 'Cappuccino',
     subtitle: 'with Chocolate',
     price: 4.53,
     rating: 4.8,
-    image: require('../assets/images/Product01.png'),
+    image: '@/assets/images/Product01.png',
   },
   {
     id: 2,
@@ -21,7 +21,7 @@ const items: item[] = [
     subtitle: 'with Vanilla',
     price: 4.5,
     rating: 4.6,
-    image: require('../assets/images/Product02.png'),
+    image: '@/assets/images/Product02.png',
   },
   {
     id: 3,
@@ -29,7 +29,7 @@ const items: item[] = [
     subtitle: 'with Caramel',
     price: 4.7,
     rating: 4.9,
-    image: require('../assets/images/Product03.png'),
+    image: '@/assets/images/Product03.png',
   },
   {
     id: 4,
@@ -37,7 +37,7 @@ const items: item[] = [
     subtitle: 'with Oat milk',
     price: 4.6,
     rating: 4.7,
-    image: require('../assets/images/Product04.png'),
+    image: '@/assets/images/Product04.png',
   },
   {
     id: 5,
@@ -45,7 +45,7 @@ const items: item[] = [
     subtitle: 'with Chocolate',
     price: 3.43,
     rating: 4.8,
-    image: require('../assets/images/Product05.png'),
+    image: '@/assets/images/Product05.png',
   },
   {
     id: 6,
@@ -53,7 +53,7 @@ const items: item[] = [
     subtitle: 'with Vanilla',
     price: 3.4,
     rating: 4.6,
-    image: require('../assets/images/Product06.png'),
+    image: '@/assets/images/Product06.png',
   },
   {
     id: 7,
@@ -61,7 +61,7 @@ const items: item[] = [
     subtitle: 'with Chocolate',
     price: 3.53,
     rating: 4.8,
-    image: require('../assets/images/Product07.png'),
+    image: '@/assets/images/Product07.png',
   },
   {
     id: 8,
@@ -69,7 +69,7 @@ const items: item[] = [
     subtitle: 'with Caramel',
     price: 3.7,
     rating: 4.9,
-    image: require('../assets/images/Product09.png'),
+    image: '@/assets/images/Product09.png',
   },
   {
     id: 9,
@@ -77,7 +77,7 @@ const items: item[] = [
     subtitle: 'with Chocolate',
     price: 2.53,
     rating: 4.8,
-    image: require('../assets/images/Product09.png'),
+    image: '@/assets/images/Product09.png',
   },
   {
     id: 10,
@@ -85,7 +85,7 @@ const items: item[] = [
     subtitle: 'with Chocolate',
     price: 2.53,
     rating: 4.8,
-    image: require('../assets/images/Product10.png'),
+    image: '@/assets/images/Product10.png',
   },
   {
     id: 11,
@@ -93,7 +93,7 @@ const items: item[] = [
     subtitle: '',
     price: 4.53,
     rating: 4.8,
-    image: require('../assets/images/Product11.png'),
+    image: '@/assets/images/Product11.png',
   },
   {
     id: 12,
@@ -101,7 +101,7 @@ const items: item[] = [
     subtitle: '',
     price: 4.53,
     rating: 4.8,
-    image: require('../assets/images/Product12.png'),
+    image: '@/assets/images/Product12.png',
   },
 ];
 
