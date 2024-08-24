@@ -14,7 +14,7 @@ export type CoffeeCardProp = {
   };
 };
 
-const imageMapper: { [key: string]: any } = {
+export const imageMapper: { [key: string]: any } = {
   '@/assets/images/Product01.png': require('@/assets/images/Product01.png'),
   '@/assets/images/Product02.png': require('@/assets/images/Product02.png'),
   '@/assets/images/Product03.png': require('@/assets/images/Product03.png'),
@@ -30,11 +30,11 @@ const imageMapper: { [key: string]: any } = {
 };
 
 const CoffeeCard: React.FC<CoffeeCardProp> = ({ item }) => {
-  const { saveProduct } = useGlobalContext();
+  const { setProduct } = useGlobalContext();
 
   const handleProductSelect = async () => {
-    await saveProduct(item);
-    router.push(`/${item?.id}`);
+    setProduct(item);
+    router.push(`/product/${item.id}`);
   };
 
   return (
