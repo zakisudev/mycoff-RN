@@ -1,17 +1,42 @@
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
 import React from 'react';
-import { TouchableOpacity } from 'react-native';
+import { router } from 'expo-router';
+import { useGlobalContext } from '@/context/GlobalContext';
 
-export type item = {
-  id: number;
-  title: String;
-  subtitle: String;
-  price: number;
-  rating: number;
-  image: String;
+export type CoffeeCardProp = {
+  item: {
+    id: number;
+    title: string;
+    subtitle: string;
+    price: number;
+    rating: number;
+    image: string;
+  };
 };
 
-const CoffeeCard = ({ item }: any) => {
+const imageMapper: { [key: string]: any } = {
+  '@/assets/images/Product01.png': require('@/assets/images/Product01.png'),
+  '@/assets/images/Product02.png': require('@/assets/images/Product02.png'),
+  '@/assets/images/Product03.png': require('@/assets/images/Product03.png'),
+  '@/assets/images/Product04.png': require('@/assets/images/Product04.png'),
+  '@/assets/images/Product05.png': require('@/assets/images/Product05.png'),
+  '@/assets/images/Product06.png': require('@/assets/images/Product06.png'),
+  '@/assets/images/Product07.png': require('@/assets/images/Product07.png'),
+  '@/assets/images/Product08.png': require('@/assets/images/Product08.png'),
+  '@/assets/images/Product09.png': require('@/assets/images/Product09.png'),
+  '@/assets/images/Product10.png': require('@/assets/images/Product10.png'),
+  '@/assets/images/Product11.png': require('@/assets/images/Product11.png'),
+  '@/assets/images/Product12.png': require('@/assets/images/Product12.png'),
+};
+
+const CoffeeCard: React.FC<CoffeeCardProp> = ({ item }) => {
+  const { saveProduct } = useGlobalContext();
+
+  const handleProductSelect = async () => {
+    await saveProduct(item);
+    router.push(`/${item?.id}`);
+  };
+
   return (
     <View
       style={{
@@ -33,9 +58,12 @@ const CoffeeCard = ({ item }: any) => {
           position: 'relative',
           borderRadius: 10,
         }}
+        onPress={handleProductSelect}
       >
         <Image
-          source={item.image}
+          source={
+            imageMapper[item.image] || require('@/assets/images/default.png')
+          }
           style={{ width: '100%', height: '100%' }}
           resizeMode="contain"
         />
