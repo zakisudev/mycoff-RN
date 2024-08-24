@@ -8,8 +8,8 @@ export type GlobalContextProps = {
   setUser: (value: any) => void;
   isLoading: boolean;
   setIsLoading: (value: boolean) => void;
-  saveProduct: (value: CoffeeCardProp['item']) => Promise<void>; // Add saveProduct method
-  loadProduct: () => Promise<CoffeeCardProp | null>; // Add loadProduct method
+  product: CoffeeCardProp['item'] | null;
+  setProduct: (value: CoffeeCardProp['item'] | null) => void;
 };
 
 const GlobalContext = createContext<GlobalContextProps>({
@@ -19,8 +19,15 @@ const GlobalContext = createContext<GlobalContextProps>({
   setUser: () => {},
   isLoading: true,
   setIsLoading: () => {},
-  saveProduct: async () => {},
-  loadProduct: async () => null,
+  product: {
+    id: 0,
+    title: '',
+    subtitle: '',
+    price: 0,
+    rating: 0,
+    image: '',
+  },
+  setProduct: () => {},
 });
 
 export const useGlobalContext = () => useContext(GlobalContext);

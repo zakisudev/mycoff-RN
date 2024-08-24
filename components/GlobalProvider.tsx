@@ -11,27 +11,14 @@ export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-
-  // Method to save product in AsyncStorage
-  const saveProduct = async (value: CoffeeCardProp) => {
-    try {
-      const jsonValue = JSON.stringify(value);
-      await AsyncStorage.setItem('product', jsonValue);
-    } catch (e) {
-      console.error('Failed to save the product', e);
-    }
-  };
-
-  // Method to load product from AsyncStorage
-  const loadProduct = async (): Promise<CoffeeCardProp | null> => {
-    try {
-      const jsonValue = await AsyncStorage.getItem('product');
-      return jsonValue != null ? JSON.parse(jsonValue) : null;
-    } catch (e) {
-      console.error('Failed to load the product', e);
-      return null;
-    }
-  };
+  const [product, setProduct] = useState<CoffeeCardProp['item'] | null>({
+    id: 0,
+    title: '',
+    subtitle: '',
+    price: 0,
+    rating: 0,
+    image: '',
+  });
 
   return (
     <GlobalContext.Provider
@@ -42,8 +29,8 @@ export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
         setUser,
         isLoading,
         setIsLoading,
-        saveProduct,
-        loadProduct,
+        product,
+        setProduct,
       }}
     >
       {children}
