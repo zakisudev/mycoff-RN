@@ -7,8 +7,8 @@ import IconBag from '@/assets/images/Bag.png';
 import IconBagInactive from '@/assets/images/BagInactive.png';
 import IconHeart from '@/assets/images/Heart.png';
 import IconHeartInactive from '@/assets/images/HeartInactive.png';
-import IconNotification from '@/assets/images/Notification.png';
-import IconNotificationInactive from '@/assets/images/NotificationInactive.png';
+import IconProfile from '@/assets/images/Profile.png';
+import IconProfileInactive from '@/assets/images/ProfileInactive.png';
 
 const icons = {
   Home: {
@@ -23,9 +23,9 @@ const icons = {
     active: IconBag,
     inactive: IconBagInactive,
   },
-  Notification: {
-    active: IconNotification,
-    inactive: IconNotificationInactive,
+  Profile: {
+    active: IconProfile,
+    inactive: IconProfileInactive,
   },
 };
 

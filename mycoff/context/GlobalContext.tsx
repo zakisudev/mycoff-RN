@@ -17,7 +17,7 @@ const GlobalContext = createContext<GlobalContextProps>({
   setIsLoggedIn: () => {},
   user: null,
   setUser: () => {},
-  isLoading: true,
+  isLoading: false,
   setIsLoading: () => {},
   product: {
     id: 0,
