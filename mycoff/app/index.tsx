@@ -1,5 +1,6 @@
 import { View, Text, Image, TouchableOpacity } from 'react-native';
-import React from 'react';
+import React, { useEffect } from 'react';
+import { getAuth, onAuthStateChanged } from '@firebase/auth';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import {
   GestureHandlerRootView,
@@ -7,11 +8,50 @@ import {
 } from 'react-native-gesture-handler';
 import { StatusBar } from 'expo-status-bar';
 import { router } from 'expo-router';
+import { useGlobalContext } from '@/context/GlobalContext';
+import app from '../firebase';
 
-const index = () => {
-  const handleGoogleLogin = () => {
-    router.push('/home');
-  };
+type IndexProps = {
+  email: string;
+  setEmail: (email: string) => void;
+  password: string;
+  setPassword: (password: string) => void;
+  isLoggedIn: boolean;
+  setIsLoggedIn: (isLoggedIn: boolean) => void;
+  handleAuthentication: () => void;
+};
+
+export const auth = getAuth(app);
+
+const Index: React.FC<IndexProps> = () => {
+  const { setUser, setIsLoading, setIsLoggedIn } = useGlobalContext();
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(
+      auth,
+      (user) => {
+        if (user) {
+          setUser(user);
+          setIsLoggedIn(true);
+          router.push('/home');
+        } else {
+          setIsLoading(false);
+          setUser(null);
+        }
+      },
+      (error) => {
+        setIsLoading(false);
+        console.log('Error: ', error);
+      },
+      () => {
+        setIsLoading(false);
+        console.log('finished');
+      }
+    );
+
+    return () => unsubscribe();
+  }, []);
+
   return (
     <GestureHandlerRootView>
       <NativeViewGestureHandler>
@@ -32,16 +72,18 @@ const index = () => {
           >
             <Image
               source={require('../assets/images/Coffee.png')}
-              style={{ width: '100%', height: '55%' }}
+              style={{ width: '100%', height: '30%' }}
               resizeMode="cover"
             />
+
             <View
               style={{
                 width: '100%',
                 justifyContent: 'flex-start',
                 alignItems: 'center',
                 paddingHorizontal: 30,
-                marginTop: 20,
+                marginTop: 10,
+                borderTopEndRadius: 50,
               }}
             >
               <Text
@@ -72,39 +114,141 @@ const index = () => {
                 The best grain, the finest roast, the powerful flavor.
               </Text>
             </View>
-            <TouchableOpacity
+
+            <View
               style={{
-                width: '90%',
-                height: 64,
-                marginHorizontal: 'auto',
-                marginTop: 20,
-                borderRadius: 10,
-                backgroundColor: '#FFFFFF',
-                flexDirection: 'row',
+                width: '100%',
+                paddingHorizontal: 30,
+                flexDirection: 'column',
+              }}
+            >
+              <TouchableOpacity
+                style={{
+                  width: '100%',
+                  height: 54,
+                  marginHorizontal: 'auto',
+                  marginTop: 20,
+                  borderRadius: 10,
+                  backgroundColor: '#FFFFFF',
+                  flexDirection: 'row',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  gap: 20,
+                }}
+                onPress={() => router.push('/signin')}
+              >
+                <Image
+                  source={require('../assets/images/Email.png')}
+                  resizeMode="contain"
+                  style={{
+                    width: 20,
+                    height: 20,
+                  }}
+                />
+                <Text
+                  style={{
+                    fontFamily: 'SpaceMono',
+                    fontWeight: 600,
+                    fontSize: 18,
+                  }}
+                >
+                  Continue with Email
+                </Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={{
+                  width: '100%',
+                  height: 54,
+                  marginHorizontal: 'auto',
+                  marginTop: 20,
+                  borderRadius: 10,
+                  backgroundColor: '#FFFFFF',
+                  flexDirection: 'row',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  gap: 20,
+                }}
+                onPress={() => console.log('Google')}
+              >
+                <Image
+                  source={require('../assets/images/GoogleLogo.png')}
+                  resizeMode="contain"
+                  style={{
+                    width: 20,
+                    height: 20,
+                  }}
+                />
+                <Text
+                  style={{
+                    fontFamily: 'SpaceMono',
+                    fontWeight: 600,
+                    fontSize: 18,
+                  }}
+                >
+                  Continue with Google
+                </Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={{
+                  width: '100%',
+                  height: 54,
+                  marginHorizontal: 'auto',
+                  marginTop: 20,
+                  borderRadius: 10,
+                  backgroundColor: '#FFFFFF',
+                  flexDirection: 'row',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  gap: 20,
+                }}
+                onPress={() => console.log('Phone')}
+              >
+                <Image
+                  source={require('../assets/images/Phone.png')}
+                  resizeMode="contain"
+                  style={{
+                    width: 20,
+                    height: 20,
+                  }}
+                />
+                <Text
+                  style={{
+                    fontFamily: 'SpaceMono',
+                    fontWeight: 600,
+                    fontSize: 18,
+                  }}
+                >
+                  Continue with Phone
+                </Text>
+              </TouchableOpacity>
+            </View>
+            {/* <View
+              style={{
+                width: '100%',
+                height: '100%',
+                position: 'absolute',
+                backgroundColor: '#0000003d',
                 justifyContent: 'center',
                 alignItems: 'center',
-                gap: 20,
+                right: 0,
+                left: 0,
+                top: 0,
+                bottom: 0,
+                margin: 'auto',
+                display: `${isLoading ? 'flex' : 'none'}`,
               }}
-              onPress={handleGoogleLogin}
             >
               <Image
-                source={require('../assets/images/GoogleLogo.png')}
-                resizeMode="cover"
+                source={require('../assets/3DCoffeeCup.gif')}
                 style={{
-                  width: 40,
-                  height: 40,
+                  width: '50%',
+                  height: '50%',
                 }}
+                resizeMode="contain"
               />
-              <Text
-                style={{
-                  fontFamily: 'SpaceMono',
-                  fontWeight: 600,
-                  fontSize: 18,
-                }}
-              >
-                Continue with Google
-              </Text>
-            </TouchableOpacity>
+            </View> */}
           </View>
           <StatusBar style="light" />
         </SafeAreaView>
@@ -113,4 +257,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Index;
