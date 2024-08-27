@@ -6,7 +6,7 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from 'react-native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   GestureHandlerRootView,
   NativeViewGestureHandler,
@@ -17,10 +17,19 @@ import SearchProduct from '@/components/SearchProduct';
 import Featured from '@/components/Featured';
 import CoffeeTypes from '@/components/CoffeeTypes';
 import ProductItems from '@/components/ProductItems';
+import { router } from 'expo-router';
+import { useGlobalContext } from '@/context/GlobalContext';
 
-const home = () => {
+const Home = () => {
+  const { user, isLoading } = useGlobalContext();
   const [selectedCoffee, setSelectedCoffee] = useState('Cappuccino');
   const [searchTerm, setSearchTerm] = useState('');
+
+  useEffect(() => {
+    if (!user) {
+      router.push('/');
+    }
+  }, [user]);
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
@@ -75,11 +84,15 @@ const home = () => {
                     style={{
                       alignItems: 'center',
                       justifyContent: 'center',
+                      borderRadius: 50,
+                      backgroundColor: '#fff',
+                      padding: 5,
                     }}
+                    onPress={() => router.push('/profile')}
                   >
                     <Image
-                      source={require('../../assets/images/Profile.png')}
-                      resizeMode="cover"
+                      source={require('../../assets/images/ProfileInactive.png')}
+                      resizeMode="contain"
                       style={{ width: 44, height: 44 }}
                     />
                   </TouchableOpacity>
@@ -146,4 +159,4 @@ const home = () => {
   );
 };
 
-export default home;
+export default Home;

@@ -21,6 +21,7 @@ export default function TabLayout() {
         tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
         headerShown: false,
         tabBarStyle,
+        tabBarHideOnKeyboard: true,
       }}
     >
       <Tabs.Screen
@@ -31,12 +32,6 @@ export default function TabLayout() {
           ),
           tabBarLabel: '',
           freezeOnBlur: false,
-          tabBarStyle: {
-            height: 80,
-            paddingTop: 10,
-            borderTopColor: '#dcdcdc',
-            borderTopWidth: 2,
-          },
         }}
       />
       <Tabs.Screen
@@ -46,12 +41,6 @@ export default function TabLayout() {
             <TabBarIcon icon="Heart" active={focused ? true : false} />
           ),
           tabBarLabel: '',
-          tabBarStyle: {
-            height: 80,
-            paddingTop: 10,
-            borderTopColor: '#dcdcdc',
-            borderTopWidth: 2,
-          },
         }}
       />
       <Tabs.Screen
@@ -61,27 +50,15 @@ export default function TabLayout() {
             <TabBarIcon icon="Bag" active={focused ? true : false} />
           ),
           tabBarLabel: '',
-          tabBarStyle: {
-            height: 80,
-            paddingTop: 10,
-            borderTopColor: '#dcdcdc',
-            borderTopWidth: 2,
-          },
         }}
       />
       <Tabs.Screen
-        name="notification"
+        name="profile"
         options={{
           tabBarIcon: ({ focused }) => (
-            <TabBarIcon icon="Notification" active={focused ? true : false} />
+            <TabBarIcon icon="Profile" active={focused ? true : false} />
           ),
           tabBarLabel: '',
-          tabBarStyle: {
-            height: 80,
-            paddingTop: 10,
-            borderTopColor: '#dcdcdc',
-            borderTopWidth: 2,
-          },
         }}
       />
     </Tabs>
