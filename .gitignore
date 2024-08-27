@@ -9,6 +9,9 @@ npm-debug.*
 *.mobileprovision
 *.orig.*
 web-build/
+firebase-service-account*
+.env
+expo-env.d.ts
 
 # macOS
 .DS_Store
