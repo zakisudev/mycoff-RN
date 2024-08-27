@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import GlobalContext from '../context/GlobalContext';
 import { CoffeeCardProp } from './CoffeeCard';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 type GlobalProviderProps = {
   children: React.ReactNode;
