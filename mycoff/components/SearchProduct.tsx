@@ -1,5 +1,6 @@
 import { View, Image, TextInput, TouchableOpacity } from 'react-native';
 import React from 'react';
+import Toast from 'react-native-toast-message';
 
 type SearchProductProps = {
   setSearchTerm: (term: string) => void;
@@ -47,6 +48,8 @@ const SearchProduct: React.FC<SearchProductProps> = ({ setSearchTerm }) => {
           }}
           placeholder="Search coffee"
           placeholderTextColor="#929292"
+          autoCapitalize="none"
+          onChangeText={setSearchTerm}
         />
         <TouchableOpacity
           style={{
@@ -58,7 +61,13 @@ const SearchProduct: React.FC<SearchProductProps> = ({ setSearchTerm }) => {
             borderRadius: 14,
             padding: 10,
           }}
-          onPress={() => alert('filter')}
+          onPress={() =>
+            Toast.show({
+              type: 'customToast',
+              text1: 'Filter',
+              text2: 'Coming soon!',
+            })
+          }
         >
           <Image
             source={require('../assets/images/Filter.png')}
