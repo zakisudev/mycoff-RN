@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
   },
   text2: {
     fontSize: 14,
-    color: '#000',
+    color: '#ffffff',
     fontFamily: 'SpaceMono',
   },
 });

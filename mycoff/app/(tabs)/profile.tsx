@@ -17,7 +17,7 @@ import { useGlobalContext } from '@/context/GlobalContext';
 import { router } from 'expo-router';
 import Toast from 'react-native-toast-message';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { signOut } from '@firebase/auth';
+import { signOut, updateProfile } from '@firebase/auth';
 import { auth } from '../index';
 import { formatDistanceToNow } from 'date-fns';
 
@@ -41,8 +41,9 @@ const Profile = () => {
 
     if (user) {
       try {
-        await user.updateProfile({
+        await updateProfile(user, {
           displayName,
+          photoURL: profileImage,
           phoneNumber,
         });
 
@@ -124,7 +125,14 @@ const Profile = () => {
               style={{ width: '100%', flexGrow: 1 }}
               showsVerticalScrollIndicator={false}
             >
-              <View style={{ marginTop: 30, marginBottom: 30 }}>
+              <View
+                style={{
+                  marginTop: 30,
+                  marginBottom: 30,
+                  width: '100%',
+                  alignItems: 'center',
+                }}
+              >
                 <Text
                   style={{
                     fontSize: 24,
@@ -163,6 +171,16 @@ const Profile = () => {
                     resizeMode="contain"
                   />
                 </View>
+                <Text
+                  style={{
+                    fontSize: 24,
+                    fontFamily: 'SpaceMono',
+                    fontWeight: 'semibold',
+                    color: '#C67C4E',
+                  }}
+                >
+                  {displayName}
+                </Text>
                 <View style={{ flexDirection: 'row', gap: 10 }}>
                   <Text
                     style={{

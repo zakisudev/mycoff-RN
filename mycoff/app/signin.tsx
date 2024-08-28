@@ -21,6 +21,7 @@ const signin = () => {
     return emailRegex.test(email);
   };
 
+
   const handleSignin = async () => {
     setIsLoading(true);
     const trimmedEmail = email.trim().toLowerCase();
@@ -33,15 +34,16 @@ const signin = () => {
     }
 
     try {
-      const userCred = await signInWithEmailAndPassword(
+      const res = await signInWithEmailAndPassword(
         auth,
         trimmedEmail,
         password
       );
 
-      if (!userCred.user) return;
+      const user = res.user;
 
-      setUser(userCred.user);
+      setUser(user);
+
       Toast.show({
         type: 'success',
         text1: 'Login successful',
@@ -49,11 +51,37 @@ const signin = () => {
 
       router.push('/home');
     } catch (error: any) {
-      console.log('Error', error);
-      Toast.show({
-        type: 'error',
-        text1: 'Login failed',
-      });
+      if (error.code === 'auth/user-not-found') {
+        Toast.show({
+          type: 'customToast',
+          text1: 'User error',
+          text2: 'User not found',
+        });
+      } else if (error.code === 'auth/wrong-password') {
+        Toast.show({
+          type: 'customToast',
+          text1: 'Password',
+          text2: 'Incorrect password',
+        });
+      } else if (error.code === 'auth/invalid-email') {
+        Toast.show({
+          type: 'customToast',
+          text1: 'Email error',
+          text2: 'Invalid Email',
+        });
+      } else if (error.code === 'auth/invalid-credential') {
+        Toast.show({
+          type: 'customToast',
+          text1: 'Login error',
+          text2: 'Invalid Email or password',
+        });
+      } else {
+        Toast.show({
+          type: 'customToast',
+          text1: 'Login error',
+          text2: error.message,
+        });
+      }
     } finally {
       setIsLoading(false);
     }
