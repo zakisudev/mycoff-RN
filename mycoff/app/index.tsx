@@ -18,7 +18,6 @@ type IndexProps = {
   setPassword: (password: string) => void;
   isLoggedIn: boolean;
   setIsLoggedIn: (isLoggedIn: boolean) => void;
-  handleAuthentication: () => void;
 };
 
 export const auth = getAuth(app);
@@ -26,30 +25,26 @@ export const auth = getAuth(app);
 const Index: React.FC<IndexProps> = () => {
   const { setUser, setIsLoading, setIsLoggedIn } = useGlobalContext();
 
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(
-      auth,
-      (user) => {
-        if (user) {
-          setUser(user);
-          setIsLoggedIn(true);
-          router.push('/home');
-        } else {
-          setIsLoading(false);
-          setUser(null);
-        }
-      },
-      (error) => {
-        setIsLoading(false);
-        console.log('Error: ', error);
-      },
-      () => {
-        setIsLoading(false);
-        console.log('finished');
-      }
-    );
+  const checkAuthState = async () => {
+    setIsLoading(true);
 
-    return () => unsubscribe();
+    const user = auth.currentUser;
+
+    console.log(user);
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser(user);
+        setIsLoggedIn(true);
+        setIsLoading(false);
+        router.push('/home');
+      } else {
+        setIsLoading(false);
+      }
+    });
+  };
+
+  useEffect(() => {
+    checkAuthState();
   }, []);
 
   return (
