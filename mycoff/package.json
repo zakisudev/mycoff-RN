@@ -16,6 +16,7 @@
     "preset": "jest-expo"
   },
   "dependencies": {
+    "@expo/config": "^10.0.10",
     "@expo/vector-icons": "^14.0.2",
     "@firebase/app": "^0.10.9",
     "@firebase/auth": "^1.7.7",

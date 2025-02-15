@@ -30,15 +30,19 @@
     },
     "plugins": [
       "expo-router",
-      "expo-build-properties",
+      "expo-build-properties"
     ],
     "experiments": {
       "typedRoutes": true
     },
     "extra": {
       "eas": {
-        "projectId": "3c029d62-ed86-4833-bf7b-906eed0a16cd"
+        "projectId": "76a2b91d-904a-4978-af52-ee4928299b09"
+      },
+      "router": {
+        "origin": false
       }
-    }
+    },
+    "owner": "zakisu"
   }
 }
