@@ -13,13 +13,15 @@
       "backgroundColor": "#000000"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.zakisu.mycoff"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/icons/Icon.png",
         "backgroundColor": "#000000"
-      }
+      },
+      "package": "com.zakisu.mycoff"
     },
     "web": {
       "bundler": "metro",
@@ -29,10 +31,14 @@
     "plugins": [
       "expo-router",
       "expo-build-properties",
-      "expo-secure-store"
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "3c029d62-ed86-4833-bf7b-906eed0a16cd"
+      }
     }
   }
 }

@@ -12,7 +12,7 @@ import { auth } from './index';
 import { createUserWithEmailAndPassword } from '@firebase/auth';
 
 const signup = () => {
-  const { user, setUser, isLoading, setIsLoading } = useGlobalContext();
+  // const { user, setUser, isLoading, setIsLoading } = useGlobalContext();
   const [phone, setPhone] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
@@ -23,58 +23,57 @@ const signup = () => {
     return emailRegex.test(email);
   };
 
-  const handleSignup = async () => {
-    setIsLoading(true);
-    if (!isValidEmail(email.toLowerCase())) {
-      Toast.show({
-        type: 'error',
-        text1: 'Invalid email format',
-      });
-      setIsLoading(false);
-      return;
-    }
+  // const handleSignup = async () => {
+  //   setIsLoading(true);
+  //   if (!isValidEmail(email.toLowerCase())) {
+  //     Toast.show({
+  //       type: 'error',
+  //       text1: 'Invalid email format',
+  //     });
+  //     setIsLoading(false);
+  //     return;
+  //   }
 
-    if (password !== cPassword) {
-      Toast.show({
-        type: 'error',
-        text1: 'Passwords do not match',
-      });
-      setIsLoading(false);
-      return;
-    }
+  //   if (password !== cPassword) {
+  //     Toast.show({
+  //       type: 'error',
+  //       text1: 'Passwords do not match',
+  //     });
+  //     setIsLoading(false);
+  //     return;
+  //   }
 
-    try {
-      const userCred = await createUserWithEmailAndPassword(
-        auth,
-        email.toLowerCase(),
-        password
-      );
+  //   try {
+  //     const userCred = await createUserWithEmailAndPassword(
+  //       auth,
+  //       email.toLowerCase(),
+  //       password
+  //     );
 
-      if (!userCred.user) return;
+  //     if (!userCred.user) return;
 
-      setUser(userCred.user);
-      setIsLoading(false);
-      Toast.show({
-        type: 'success',
-        text1: 'Register successful',
-      });
-    } catch (error: any) {
-      console.log('Error:', error.message);
-      Toast.show({
-        type: 'error',
-        text1: 'Register failed',
-      });
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  //     setUser(userCred.user);
+  //     setIsLoading(false);
+  //     Toast.show({
+  //       type: 'success',
+  //       text1: 'Register successful',
+  //     });
+  //   } catch (error: any) {
+  //     console.log('Error:', error.message);
+  //     Toast.show({
+  //       type: 'error',
+  //       text1: 'Register failed',
+  //     });
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
 
-  console.log(user);
-  useEffect(() => {
-    if (user) {
-      router.push('/');
-    }
-  }, [user]);
+  // useEffect(() => {
+  //   if (user) {
+  //     router.push('/');
+  //   }
+  // }, [user]);
 
   return (
     <GestureHandlerRootView>
@@ -211,9 +210,9 @@ const signup = () => {
                 alignItems: 'center',
               }}
               onPress={handleSignup}
-              disabled={isLoading}
+              // disabled={isLoading}
             >
-              {isLoading ? (
+              {/* {isLoading ? (
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                   <Image
                     source={require('../assets/Loading.gif')}
@@ -231,7 +230,7 @@ const signup = () => {
                     Signing...
                   </Text>
                 </View>
-              ) : (
+              ) : ( */}
                 <Text
                   style={{
                     fontFamily: 'SpaceMono',
@@ -242,7 +241,7 @@ const signup = () => {
                 >
                   Sign Up
                 </Text>
-              )}
+              {/* )} */}
             </TouchableOpacity>
 
             <View

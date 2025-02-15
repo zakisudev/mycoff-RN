@@ -107,28 +107,20 @@ const items: any[] = [
 
 const ProductItems: React.FC<ProductItemsProps> = ({ selectedCoffee }) => {
   return (
-    <View
-      style={{
-        width: '100%',
-        height: '100%',
+    <FlatList
+      data={items.filter((item) => item.title === selectedCoffee)}
+      keyExtractor={(item: any) => item.id.toString()}
+      renderItem={({ item }) => <CoffeeCard item={item} />}
+      horizontal={false}
+      numColumns={2}
+      style={{ width: '100%' }}
+      contentContainerStyle={{
         justifyContent: 'center',
         alignItems: 'center',
+        gap: 10,
       }}
-    >
-      <FlatList
-        data={items.filter((item) => item.title === selectedCoffee)}
-        keyExtractor={(item: any) => item.id.toString()}
-        renderItem={({ item }) => <CoffeeCard item={item} />}
-        horizontal={false}
-        numColumns={2}
-        style={{ width: '100%' }}
-        contentContainerStyle={{
-          justifyContent: 'center',
-          alignItems: 'center',
-          gap: 10,
-        }}
-      />
-    </View>
+      showsVerticalScrollIndicator={false}
+    />
   );
 };
 

@@ -22,7 +22,7 @@ import { auth } from '../index';
 import { formatDistanceToNow } from 'date-fns';
 
 const Profile = () => {
-  const { user, setUser, isLoading, setIsLoading } = useGlobalContext();
+  // const { user, setUser, isLoading, setIsLoading } = useGlobalContext();
   const [displayName, setDisplayName] = useState('');
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -32,76 +32,76 @@ const Profile = () => {
     require('../../assets/images/Profile.png')
   );
 
-  const updateUserProfile = async () => {
-    setIsLoading(true);
+  // const updateUserProfile = async () => {
+  //   setIsLoading(true);
 
-    if (!user) {
-      router.push('/');
-    }
+  //   // if (!user) {
+  //   //   router.push('/');
+  //   // }
 
-    if (user) {
-      try {
-        await updateProfile(user, {
-          displayName,
-          photoURL: profileImage,
-          phoneNumber,
-        });
+  //   if (user) {
+  //     try {
+  //       await updateProfile(user, {
+  //         displayName,
+  //         photoURL: profileImage,
+  //         phoneNumber,
+  //       });
 
-        Toast.show({
-          type: 'success',
-          text1: 'Profile Updated',
-          text2: 'Your profile has been updated successfully',
-        });
-      } catch (error) {
-        console.log('Error updating profile: ', error);
-        Toast.show({
-          type: 'error',
-          text1: 'Error Updating Profile',
-          text2: 'An error occurred while updating your profile',
-        });
-      } finally {
-        setIsLoading(false);
-      }
-    }
-  };
+  //       Toast.show({
+  //         type: 'success',
+  //         text1: 'Profile Updated',
+  //         text2: 'Your profile has been updated successfully',
+  //       });
+  //     } catch (error) {
+  //       console.log('Error updating profile: ', error);
+  //       Toast.show({
+  //         type: 'error',
+  //         text1: 'Error Updating Profile',
+  //         text2: 'An error occurred while updating your profile',
+  //       });
+  //     } finally {
+  //       setIsLoading(false);
+  //     }
+  //   }
+  // };
 
-  const signOutUser = async () => {
-    setIsLoading(true);
+  // const signOutUser = async () => {
+  //   setIsLoading(true);
 
-    try {
-      const res = await signOut(auth);
-      setUser(null);
+  //   try {
+  //     const res = await signOut(auth);
+  //     setUser(null);
 
-      Toast.show({
-        type: 'success',
-        text1: 'Signed Out',
-        text2: 'You have been signed out successfully',
-      });
-      setIsLoading(false);
-    } catch (error: any) {
-      console.error('Error signing out:', error?.message);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  //     Toast.show({
+  //       type: 'success',
+  //       text1: 'Signed Out',
+  //       text2: 'You have been signed out successfully',
+  //     });
+  //     setIsLoading(false);
+  //   } catch (error: any) {
+  //     console.error('Error signing out:', error?.message);
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
 
-  useEffect(() => {
-    if (!user) {
-      router.push('/');
-    }
+  // useEffect(() => {
+  //   if (!user) {
+  //     router.push('/');
+  //   }
 
-    if (user) {
-      setDisplayName(user.displayName || '');
-      setEmail(user.email || '');
-      setPhoneNumber(user.phoneNumber || '');
-      const creationTime = user.metadata.creationTime;
-      if (creationTime) {
-        setMemberSince(creationTime);
-      }
+  //   if (user) {
+  //     setDisplayName(user.displayName || '');
+  //     setEmail(user.email || '');
+  //     setPhoneNumber(user.phoneNumber || '');
+  //     const creationTime = user.metadata.creationTime;
+  //     if (creationTime) {
+  //       setMemberSince(creationTime);
+  //     }
 
-      setIsLoading(false);
-    }
-  }, [user]);
+  //     setIsLoading(false);
+  //   }
+  // }, [user]);
 
   return (
     <GestureHandlerRootView>
@@ -342,9 +342,9 @@ const Profile = () => {
                     alignItems: 'center',
                   }}
                   onPress={signOutUser}
-                  disabled={isLoading}
+                  // disabled={isLoading}
                 >
-                  {isLoading ? (
+                  {/* {isLoading ? (
                     <View
                       style={{ flexDirection: 'row', alignItems: 'center' }}
                     >
@@ -354,7 +354,7 @@ const Profile = () => {
                         resizeMode="contain"
                       />
                     </View>
-                  ) : (
+                  ) : ( */}
                     <Text
                       style={{
                         fontFamily: 'SpaceMono',
@@ -365,7 +365,7 @@ const Profile = () => {
                     >
                       [ Logout ]
                     </Text>
-                  )}
+                  {/* )} */}
                 </TouchableOpacity>
               </View>
             </ScrollView>

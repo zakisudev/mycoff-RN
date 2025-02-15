@@ -1,4 +1,4 @@
-import { View, Text, Image, TouchableOpacity } from 'react-native';
+import { View, Text, Image, TouchableOpacity, ScrollView } from 'react-native';
 import React, { useEffect } from 'react';
 import { getAuth, onAuthStateChanged } from '@firebase/auth';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -10,6 +10,11 @@ import { StatusBar } from 'expo-status-bar';
 import { router } from 'expo-router';
 import { useGlobalContext } from '@/context/GlobalContext';
 import app from '../firebase';
+// import { initializeAuth, getReactNativePersistence } from 'firebase/auth';
+// import ReactNativeAsyncStorage from '@react-native-async-storage/async-storage';
+// const localAuth = initializeAuth(app, {
+//   persistence: getReactNativePersistence(ReactNativeAsyncStorage)
+// });
 
 type IndexProps = {
   email: string;
@@ -23,29 +28,29 @@ type IndexProps = {
 export const auth = getAuth(app);
 
 const Index: React.FC<IndexProps> = () => {
-  const { setUser, setIsLoading, setIsLoggedIn } = useGlobalContext();
+  // const { setUser, setIsLoading, setIsLoggedIn } = useGlobalContext();
 
-  const checkAuthState = async () => {
-    setIsLoading(true);
+  // const checkAuthState = async () => {
+  //   setIsLoading(true);
 
-    const user = auth.currentUser;
+  //   const user = auth.currentUser;
 
-    console.log(user);
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setUser(user);
-        setIsLoggedIn(true);
-        setIsLoading(false);
-        router.push('/home');
-      } else {
-        setIsLoading(false);
-      }
-    });
-  };
+  //   console.log("Here", user);
+  //   // onAuthStateChanged(auth, (user) => {
+  //   //   if (user) {
+  //   //     setUser(user);
+  //   //     setIsLoggedIn(true);
+  //   //     setIsLoading(false);
+  //   //     router.push('/home');
+  //   //   } else {
+  //   //     setIsLoading(false);
+  //   //   }
+  //   // });
+  // };
 
-  useEffect(() => {
-    checkAuthState();
-  }, []);
+  // useEffect(() => {
+  //   checkAuthState();
+  // }, []);
 
   return (
     <GestureHandlerRootView>

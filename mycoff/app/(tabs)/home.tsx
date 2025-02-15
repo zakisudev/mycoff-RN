@@ -21,15 +21,15 @@ import { router } from 'expo-router';
 import { useGlobalContext } from '@/context/GlobalContext';
 
 const Home = () => {
-  const { user, isLoading } = useGlobalContext();
+  // const { user, isLoading } = useGlobalContext();
   const [selectedCoffee, setSelectedCoffee] = useState('Cappuccino');
   const [searchTerm, setSearchTerm] = useState('');
 
-  useEffect(() => {
-    if (!user) {
-      router.push('/');
-    }
-  }, [user]);
+  // useEffect(() => {
+  //   if (!user) {
+  //     router.push('/');
+  //   }
+  // }, [user]);
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>

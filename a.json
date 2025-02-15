@@ -1,0 +1,21 @@
+{
+  "_redirectEventId": "undefined",
+  "apiKey": "AIzaSyDrGpkGFwI97UKRrH0RnavRUDwKFxa-5Os",
+  "appName": "[DEFAULT]",
+  "createdAt": "1724683238296",
+  "displayName": "undefined",
+  "email": "zakisudev@gmail.com",
+  "emailVerified": false,
+  "isAnonymous": false,
+  "lastLoginAt": "1724758206588",
+  "phoneNumber": "undefined",
+  "photoURL": "undefined",
+  "providerData": [["Object"]],
+  "stsTokenManager": {
+    "accessToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjExYzhiMmRmNGM1NTlkMjhjOWRlNWQ0MTAxNDFiMzBkOWUyYmNlM2IiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vbXljb2ZmLWViMGUyIiwiYXVkIjoibXljb2ZmLWViMGUyIiwiYXV0aF90aW1lIjoxNzI0NzU4MjA2LCJ1c2VyX2lkIjoiSnRPUjJmNjg5amZEZnl2SWpiOWFLNWs3U1NvMiIsInN1YiI6Ikp0T1IyZjY4OWpmRGZ5dklqYjlhSzVrN1NTbzIiLCJpYXQiOjE3MjQ3NTgyMDYsImV4cCI6MTcyNDc2MTgwNiwiZW1haWwiOiJ6YWtpc3VkZXZAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7ImVtYWlsIjpbInpha2lzdWRldkBnbWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJwYXNzd29yZCJ9fQ.Z2nUf_3YoTRSUT9Eu3r6H9w2Ghewl5R9D63LhlI1-v3E6RY4GOKfi4xR7z5lh68QHReAXnz4unIkrTHg9MEi0to6IgfHc4C4cCN69L8855ZzkhsjRM7MGrjSj76VL5Xdpl3kZ4np5AZ8qSBqFAdUUA1mRLB2aOvaApGtD9E9ZtcFVvXDNosyhWwcQhgkCEWmz4Vj3Yx5lbM2t5-eAMGCIu4WKCBX8Dj0UE75zY-ek9euAZlZcZoTCDZsss_cTnQa0jA4SeEe1Ifyp5VY4T2AqtIv_p3DkSs-N8gistZSrtpN2X_7nR0CI1VEmnziA9r7cNK6JviW3gjwM5Sut1fXlw",
+    "expirationTime": 1724761720327,
+    "refreshToken": "AMf-vBzxrGp19Spe2X9jUxMWTf-NG11hvOalVtQR6wBpxGSnoWzyvjTx9W3PGHqGWWH1SYXl6jd2fM0bR7_UcMZDFM_WnFKB52jOl2NxicTzF-j3Lsn6lzF6uDccRKSXS-ncKzHHFEsxUlHJn8PbHk8sP6bX0w4swV0hUTs3tWE-MUp1voILBY_bz1AIWVaNaxBmCPyd5gKJF42D3jpeiHW5j0jdNLS9Xw"
+  },
+  "tenantId": "undefined",
+  "uid": "JtOR2f689jfDfyvIjb9aK5k7SSo2"
+}

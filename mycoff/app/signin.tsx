@@ -9,10 +9,10 @@ import { router } from 'expo-router';
 import Toast from 'react-native-toast-message';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useGlobalContext } from '@/context/GlobalContext';
-import { signInWithEmailAndPassword } from '@firebase/auth';
+// import { signInWithEmailAndPassword } from '@firebase/auth';
 
 const signin = () => {
-  const { user, setUser, isLoading, setIsLoading } = useGlobalContext();
+  // const { user, setUser, isLoading, setIsLoading } = useGlobalContext();
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
 
@@ -23,75 +23,76 @@ const signin = () => {
 
 
   const handleSignin = async () => {
-    setIsLoading(true);
-    const trimmedEmail = email.trim().toLowerCase();
-    if (!isValidEmail(trimmedEmail)) {
-      Toast.show({
-        type: 'error',
-        text1: 'Invalid email address',
-      });
-      return;
-    }
+    router.push('/home');
+    // setIsLoading(true);
+    // const trimmedEmail = email.trim().toLowerCase();
+    // if (!isValidEmail(trimmedEmail)) {
+    //   Toast.show({
+    //     type: 'error',
+    //     text1: 'Invalid email address',
+    //   });
+    //   return;
+    // }
 
-    try {
-      const res = await signInWithEmailAndPassword(
-        auth,
-        trimmedEmail,
-        password
-      );
+    // try {
+    //   const res = await signInWithEmailAndPassword(
+    //     auth,
+    //     trimmedEmail,
+    //     password
+    //   );
 
-      const user = res.user;
+    //   const user = res.user;
 
-      setUser(user);
+    //   setUser(user);
 
-      Toast.show({
-        type: 'success',
-        text1: 'Login successful',
-      });
+    //   Toast.show({
+    //     type: 'success',
+    //     text1: 'Login successful',
+    //   });
 
-      router.push('/home');
-    } catch (error: any) {
-      if (error.code === 'auth/user-not-found') {
-        Toast.show({
-          type: 'customToast',
-          text1: 'User error',
-          text2: 'User not found',
-        });
-      } else if (error.code === 'auth/wrong-password') {
-        Toast.show({
-          type: 'customToast',
-          text1: 'Password',
-          text2: 'Incorrect password',
-        });
-      } else if (error.code === 'auth/invalid-email') {
-        Toast.show({
-          type: 'customToast',
-          text1: 'Email error',
-          text2: 'Invalid Email',
-        });
-      } else if (error.code === 'auth/invalid-credential') {
-        Toast.show({
-          type: 'customToast',
-          text1: 'Login error',
-          text2: 'Invalid Email or password',
-        });
-      } else {
-        Toast.show({
-          type: 'customToast',
-          text1: 'Login error',
-          text2: error.message,
-        });
-      }
-    } finally {
-      setIsLoading(false);
-    }
+    //   router.push('/home');
+    // } catch (error: any) {
+    //   if (error.code === 'auth/user-not-found') {
+    //     Toast.show({
+    //       type: 'customToast',
+    //       text1: 'User error',
+    //       text2: 'User not found',
+    //     });
+    //   } else if (error.code === 'auth/wrong-password') {
+    //     Toast.show({
+    //       type: 'customToast',
+    //       text1: 'Password',
+    //       text2: 'Incorrect password',
+    //     });
+    //   } else if (error.code === 'auth/invalid-email') {
+    //     Toast.show({
+    //       type: 'customToast',
+    //       text1: 'Email error',
+    //       text2: 'Invalid Email',
+    //     });
+    //   } else if (error.code === 'auth/invalid-credential') {
+    //     Toast.show({
+    //       type: 'customToast',
+    //       text1: 'Login error',
+    //       text2: 'Invalid Email or password',
+    //     });
+    //   } else {
+    //     Toast.show({
+    //       type: 'customToast',
+    //       text1: 'Login error',
+    //       text2: error.message,
+    //     });
+    //   }
+    // } finally {
+    //   setIsLoading(false);
+    // }
   };
 
-  useEffect(() => {
-    if (user) {
-      router.push('/home');
-    }
-  }, [user]);
+  // useEffect(() => {
+    // if (user) {
+      // router.push('/(tabs)');
+    // }
+  // }, []);
 
   return (
     <GestureHandlerRootView>
@@ -205,9 +206,9 @@ const signin = () => {
                 alignItems: 'center',
               }}
               onPress={handleSignin}
-              disabled={isLoading}
+              // disabled={isLoading}
             >
-              {isLoading ? (
+              {/* {isLoading ? (
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                   <Image
                     source={require('../assets/Loading.gif')}
@@ -225,7 +226,7 @@ const signin = () => {
                     Signing...
                   </Text>
                 </View>
-              ) : (
+              ) : ( */}
                 <Text
                   style={{
                     fontFamily: 'SpaceMono',
@@ -236,7 +237,7 @@ const signin = () => {
                 >
                   Sign In
                 </Text>
-              )}
+              {/* )} */}
             </TouchableOpacity>
 
             <View
